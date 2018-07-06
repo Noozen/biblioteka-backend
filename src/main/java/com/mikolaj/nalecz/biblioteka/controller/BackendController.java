@@ -5,6 +5,7 @@ import com.mikolaj.nalecz.biblioteka.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
@@ -28,8 +29,8 @@ public class BackendController {
 
     @RequestMapping(path = "/user", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Long> addNewUser (@ModelAttribute(name = "firstName") String firstName, @ModelAttribute(name = "lastName") String lastName) {
-        User user = new User(firstName, lastName);
+    public Mono<Long> addNewUser (@RequestBody MultiValueMap<String, String> params) {
+        User user = new User(params.getFirst("firstName"), params.getFirst("lastName"));
 //        user = userRepository.save(user);
         log.info(user.toString() + " successfully saved into DB");
 
