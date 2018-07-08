@@ -1,15 +1,15 @@
 package com.mikolaj.nalecz.biblioteka.controller;
 
-import com.mikolaj.nalecz.biblioteka.domain.User;
-import com.mikolaj.nalecz.biblioteka.repository.UserRepository;
+import com.mikolaj.nalecz.biblioteka.domain.Konto;
+import com.mikolaj.nalecz.biblioteka.domain.Osoba;
+import com.mikolaj.nalecz.biblioteka.domain.Wypozyczajacy;
+import com.mikolaj.nalecz.biblioteka.repository.OsobaRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
-
-import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/api")
@@ -19,7 +19,7 @@ public class BackendController {
     public static final String HELLO_TEXT = "Hello from Spring Boot Backend!";
 
     @Autowired
-    private UserRepository userRepository;
+    private OsobaRepository osobaRepository;
 
     @RequestMapping(path = "/hello")
     public Mono<String> sayHello() {
@@ -30,17 +30,15 @@ public class BackendController {
     @RequestMapping(path = "/user", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Long> addNewUser (@RequestBody MultiValueMap<String, String> params) {
-        User user = new User(params.getFirst("firstName"), params.getFirst("lastName"));
-//        user = userRepository.save(user);
-        log.info(user.toString() + " successfully saved into DB");
-
-        return Mono.fromCallable(() -> userRepository.save(user)).map(User::getId);
+        Wypozyczajacy wypozyczajacy = new Wypozyczajacy(new Konto());
+        osobaRepository.save(wypozyczajacy);
+        return Mono.just(1L);
     }
 
     @GetMapping(path="/user/{id}")
-    public Mono<User> getUserById(@PathVariable("id") long id) {
-        log.info("Reading user with id " + id + " from database.");
-        return Mono.just(userRepository.findById(id).get());
+    public Mono<Osoba> getUserById(@PathVariable("id") long id) {
+        log.info("Reading osoba with id " + id + " from database.");
+        return Mono.just(osobaRepository.findById(id).get());
     }
 
 }
