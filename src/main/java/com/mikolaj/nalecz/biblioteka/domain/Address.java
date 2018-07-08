@@ -7,15 +7,13 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
-@Table(name="users")
+@Table(name="address")
 @Getter
 @Setter
 @NoArgsConstructor
-public class User {
+public class Address {
 
     @Id
     @GenericGenerator(
@@ -41,28 +39,16 @@ public class User {
             generator = "sequenceGenerator"
     )
     private Long id;
-    private String firstName;
-    private String lastName;
+    private String test;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<Address> addresses = new LinkedHashSet<Address>();
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="`user_id`")
+    private User user;
 
     @Version
     private Integer version;
 
-    public User(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Address(String test) {
+        this.test = test;
     }
-
-    public void addAddress(Address address) {
-        addresses.add(address);
-        address.setUser(this);
-    }
-
-    public void deleteAddress(Address address) {
-        addresses.remove(address);
-        address.setUser(null);
-    }
-
 }
