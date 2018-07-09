@@ -1,0 +1,95 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body bgcolor="#fff" style="background-color:#fff">
+<div bgcolor="#fff" link="#fff" vlink="#fff" alink="#fff">
+    <!--wrapper 2 lvl -->
+    <table cellpadding="0" cellspacing="0" border="0" width="100%" align="center"
+           style="font-family:arial;font-size:12px;color:#000;table-layout:fixed;">
+        <tbody>
+        <tr>
+            <td>
+                <div style="white-space:nowrap;font:15px courier;line-height:0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#fff">
+                <!--Preheader -->
+                <!--Preheader END-->
+                <!--Logo -->
+                <table cellpadding="0" cellspacing="0" border="0" width="600" -webkit-border-horizontal-spacing="0"
+                       margin="0" align="center" style="table-layout:fixed;">
+                    <tbody>
+                    <tr>
+                        <td style="padding: 0px; margin: 0px;" width="600" height="40">
+                                <img
+                                     src="http://www.biblioteka.warka.pl/wp/wp-content/uploads/2016/04/naglowek_strony-1024x458-1.jpg"
+                                     width="600" height="150" style="border: 0px; display: block"/></td>
+
+                    </tr>
+                    <tr>
+                        <td height="40"></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <!--Logo END-->
+                <!--Tekst zamowienia-->
+                <table cellpadding="0" cellspacing="0" border="0" width="600" -webkit-border-horizontal-spacing="0"
+                       margin="0" align="center" style="table-layout:fixed;">
+                    <tbody>
+                    <tr>
+                        <td style="padding: 0px; margin: 0px;" width="30" height=""></td>
+                        <td style="padding: 0px; margin: 0px;" width="540" height="">
+                            <font style="font-family: tahoma; font-size: 12px; color:#555555;line-height:20px;; line-height: 20px">
+                                <h2>Witaj!</h2><br/><br/>
+
+                                <h4>Niesty według naszego systemu zalegasz w płatnościach na kwotę <span th:text="${kwota}"></span>zł. Prosimy o uregulowanie należności.</h4><br/>
+
+                            </font>
+                        </td>
+                        <td style="padding: 0px; margin: 0px;" width="30" height=""></td>
+                    </tr>
+                    <tr>
+                        <td height="20"></td>
+                        <td height="20"></td>
+                        <td height="20"></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table cellpadding="0" cellspacing="0" border="0" width="600" align="center">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                <tbody>
+
+                                <tr>
+                                    <td align="center" height="60" bgcolor="#eeeeee">
+                                        <font style="font-family: tahoma; font-size: 11px; color:#555555">This is an
+                                            automatically generated e-mail. Replies to this address will not be
+                                            seen. </font>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="40"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>

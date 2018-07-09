@@ -27,4 +27,8 @@ public class Wypozyczenie {
     @JoinColumn(name="`user_id`")
     private Osoba osoba;
 
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="`sztukaprzedmiotu_id`")
+    private SztukaPrzedmiotu sztukaPrzedmiotu;
+
 }

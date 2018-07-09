@@ -13,6 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Table(name="osoba")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Entity
 public abstract class Osoba {
 
     @Id
@@ -23,17 +24,21 @@ public abstract class Osoba {
     private String imie;
     private String nazwisko;
 
-    @OneToMany(mappedBy = "osoba", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<Wypozyczenie> wypozyczenia = new LinkedHashSet<Wypozyczenie>();
+    @OneToMany(mappedBy = "osoba", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Set<Wypozyczenie> wypozyczenia = new LinkedHashSet<>();
 
     public void addWypozyczenie(Wypozyczenie wypozyczenie) {
         wypozyczenia.add(wypozyczenie);
         wypozyczenie.setOsoba(this);
+
+        wypozyczenie.getSztukaPrzedmiotu().getWypozyczenia().add(wypozyczenie);
     }
 
     public void removeWypozyczenie(Wypozyczenie wypozyczenie) {
         wypozyczenia.remove(wypozyczenie);
         wypozyczenie.setOsoba(null);
+
+        wypozyczenie.getSztukaPrzedmiotu().getWypozyczenia().remove(wypozyczenie);
     }
 
 }
